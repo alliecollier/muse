@@ -19,3 +19,37 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.home-wrapper > .MuiContainer-root {
+  padding: 0px;
+  margin-bottom: 25px;
+}
+
+#mapid { height: 700px; }
+
+.leaflet-container {
+  height: 100%;
+}
+
+.rotating-art-container {
+  display: flex;
+  justify-content: center;
+}
+
+
+.rotating-art-container > .MuiPaper-root {
+  width: fit-content;
+}
+
+#art {
+  width: 254px;
+  height: 260px;
+}
+
+#museum {
+  height: 500px;
+}
+
+.logo {
+  padding: 10px;
+}
