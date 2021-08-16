@@ -60,9 +60,9 @@ class RotatingArt extends React.Component {
             <Typography gutterBottom variant="h5" component="h2">
               {this.state.art.title}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
+            {/* <Typography variant="body2" color="textSecondary" component="p">
               Artists name
-            </Typography>
+            </Typography> */}
           </CardContent>
         </CardActionArea>
       </Card>

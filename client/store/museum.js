@@ -4,7 +4,7 @@ const GET_MUSEUM = "GET_MUSEUM";
 
 const getMuseum = (museum) => ({
   type: GET_MUSEUM,
-  museum,
+  museum
 });
 
 export const fetchMuseumThunk = (id) => {
@@ -12,6 +12,16 @@ export const fetchMuseumThunk = (id) => {
     try {
       const { data } = await axios.get(`/api/museums/${id}`);
       dispatch(getMuseum(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const setFavoriteThunk = (userId, museumId, isFavorite) => {
+  return async () => {
+    try {
+      await axios.post(`/api/users/${userId}/favorite`, { museumId: museumId, favorite: isFavorite });
     } catch (error) {
       console.log(error);
     }

@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import RotatingArt from './RotatingArt'
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -27,22 +28,30 @@ const Home = props => {
   const {firstName} = props
 
   return (
-    <div className="home-wrapper">
-      <div>
-        <Typography variant="h2" color="primary" align="center" gutterBottom>
-          Welcome, {firstName ?? 'Art Lover'}!
+    <div className="home-wrapper" >
+      <div className="left-home">
+        <Typography variant="h4" color="primary" align="center" gutterBottom>
+          <Box fontWeight="fontWeightBold" m={1}>
+            Find some inspiration!
+          </Box>
         </Typography>
+        <div className="rotating-art-container">
+          <RotatingArt />
+        </div>
       </div>
-      <div className="rotating-art-container">
-        <RotatingArt />
-      </div>
-      <div>
-        <Button variant="contained" color="primary" href="/signin" >
-          Sign In
-        </Button>
-        <Button variant="contained" color="primary" href="/signup" >
-          Sign Up
-        </Button>
+      <div className="right-home" >
+        <Typography variant="h5" color="primary" align="center" gutterBottom>
+          <Box fontWeight="fontWeightBold" m={3}>
+            About MUSE:
+          </Box>
+        </Typography>
+        <Box fontWeight="fontWeightRegular" m={3} color="inherit" fontSize={18} align="center" >
+          Welcome to MUSE, youre one stop shop for finding museums in your prefered location.
+          <br/>
+          Find museums near you, see what current exhibts they have, and leave a review.
+          <br/>
+
+        </Box>
       </div>
     </div>
   )

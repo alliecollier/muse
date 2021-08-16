@@ -10,7 +10,7 @@ const Favorite = require('./models/Favorite')
 User.belongsToMany(Museum, { through: Review });
 Museum.belongsToMany(User, { through: Review });
 
-User.belongsToMany(Museum, { through: Favorite });
+User.belongsToMany(Museum, { through: Favorite});
 Museum.belongsToMany(User, { through: Favorite });
 
 Artwork.belongsTo(Museum);
@@ -22,7 +22,7 @@ module.exports = {
     User,
     Museum,
     Review,
-    Favorite,
-    Artwork
+    Artwork,
+    Favorite
   },
 }

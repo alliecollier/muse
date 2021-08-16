@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { User }} = require('../db')
+const { models: { User, Favorite }} = require('../db')
 const {
   requireToken,
   isLoggedIn
@@ -15,5 +15,24 @@ router.get('/', requireToken, isLoggedIn, async (req, res, next) => {
     next(error)
   }
 });
+
+router.post('/:userId/favorite', async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+    const museumId = req.body.museumId;
+    const isFavorite = req.body.favorite;
+    const [favorite, created] = await Favorite.findOrCreate({
+      where: {
+        userId: userId,
+        museumId: museumId
+      },
+    });
+    favorite.setFavorite(isFavorite);
+    res.json();
+
+  } catch (error) {
+    next (error)
+  }
+})
 
 module.exports = router

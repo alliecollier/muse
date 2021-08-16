@@ -11,7 +11,7 @@ const Reviews = db.define('reviews', {
     allowNull: false,
   },
   review: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
   },
 })
