@@ -13,8 +13,6 @@ import { fetchMuseumThunk, setFavoriteThunk } from '../store/museum';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import Reviews from './Reviews'
-
 
 class Museum extends React.Component {
 
@@ -89,6 +87,15 @@ class Museum extends React.Component {
               endIcon={<KeyboardArrowRightIcon />}
             >
               Purchase Tickets
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              className="purchase-button"
+              endIcon={<KeyboardArrowRightIcon />}
+              href="/leave-review"
+            >
+              Leave a Review
             </Button>
           </CardContent>
         </CardActionArea>

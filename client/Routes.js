@@ -8,6 +8,7 @@ import AccountPage from './components/AccountPage';
 import Museum from './components/Museum';
 import Map from './components/Map';
 import {me} from './store'
+import LeaveReview from './components/LeaveAReview'
 
 class Routes extends Component {
   componentDidMount() {
@@ -25,6 +26,7 @@ class Routes extends Component {
             <Route exact path="/account" component={AccountPage} />
             <Route exact path="/museums/:id" component={ Museum } />
             <Route path="/map" component={ Map } />
+            <Route path="/leave-review" component={ LeaveReview } />
           </Switch>
         ) : (
           <Switch>

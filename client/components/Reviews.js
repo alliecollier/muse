@@ -5,6 +5,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import { IconButton } from '@material-ui/core';
 import { DeleteOutlined } from '@material-ui/icons';
+import Avatar from '@material-ui/core/Avatar';
 
 export default function Reviews ({ review }) {
   console.log(review)
@@ -17,13 +18,16 @@ export default function Reviews ({ review }) {
     <div>
       <Card elevation={1}>
         <CardHeader
+          avatar={
+            <Avatar src='avatar.jpeg' />
+          }
           action={
-            <IconButton onClick={() => console.log('delete', actualReview.title)}>
+            <IconButton onClick={() => console.log('delete', actualReview.id)}>
               <DeleteOutlined />
             </IconButton>
           }
           title={museum}
-          subheader={actualReview.userId}
+          subheader={actualReview.rating}
         />
         <CardContent>
           <Typography variant='body2' color="textSecondary" >
