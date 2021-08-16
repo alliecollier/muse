@@ -22,7 +22,6 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route exact path="/" component={ Home } />
-            <Route exact path="/signin" component={ SignInForm } />
             <Route exact path="/account" component={AccountPage} />
             <Route exact path="/museums/:id" component={ Museum } />
             <Route path="/map" component={ Map } />

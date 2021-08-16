@@ -13,6 +13,8 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Copyright from './Copyright'
+import { authenticate } from '../store/auth'
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,8 +47,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SignUp = () => {
+const SignUp = (props) => {
   const classes = useStyles();
+  const {name, displayName, handleSubmit} = props
+
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -60,7 +64,7 @@ const SignUp = () => {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSubmit} name={name}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -116,11 +120,11 @@ const SignUp = () => {
               </Grid>
             </Grid>
             <Button
-              type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
+              type="submit"
             >
               Sign Up
             </Button>
@@ -141,4 +145,24 @@ const SignUp = () => {
   );
 }
 
-export default SignUp;
+const mapState = (state) => {
+  return {
+    name: 'signup'
+  }
+}
+
+const mapDispatch = (dispatch) => {
+  return {
+    handleSubmit(evt) {
+      evt.preventDefault()
+      const formName = evt.target.name
+      const email = evt.target.email.value
+      const password = evt.target.password.value
+      const firstName = evt.target.firstName?.value
+      const lastName = evt.target.lastName?.value
+      dispatch(authenticate(firstName, lastName, email, password, formName))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(SignUp);

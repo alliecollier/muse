@@ -17,8 +17,8 @@ router.get('/:id', async (req, res, next) => {
       res.sendStatus(404);
     }
     res.status(200).json(museum);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
 });
 

@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { authenticate } from '../store/auth'
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -45,8 +47,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LogIn = () => {
+const LogIn = (props) => {
   const classes = useStyles();
+  const {name, displayName, handleSubmit} = props
 
   return (
     <Grid container component="main" className={classes.root}>
@@ -60,7 +63,7 @@ const LogIn = () => {
           <Typography component="h1" variant="h5">
             Log In
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSubmit} name={name}>
             <TextField
               variant="outlined"
               margin="normal"
@@ -118,4 +121,22 @@ const LogIn = () => {
   );
 }
 
-export default LogIn;
+const mapState = (state) => {
+  return {
+    name: 'login'
+  }
+}
+
+const mapDispatch = (dispatch) => {
+  return {
+    handleSubmit(evt) {
+      evt.preventDefault()
+      const formName = evt.target.name
+      const email = evt.target.email.value
+      const password = evt.target.password.value
+      dispatch(authenticate(undefined, undefined, email, password, formName))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(LogIn);

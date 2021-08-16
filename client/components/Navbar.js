@@ -1,13 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { shadows } from '@material-ui/system';
+import { logout } from '../store/auth';
 import {connect} from 'react-redux';
+import history from '../history';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,42 +23,44 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     maxWidth: 160,
+  },
+  avatar: {
+    marginLeft: 4,
   }
 }));
 
-function NavBar() {
+function NavBar(props) {
   const classes = useStyles();
 
    return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
-          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton> */}
-
-          <img src={'/Muse-logo.svg'} alt='logo' className={classes.logo + " logo"} />
-
-          <Typography variant="h6" className={classes.title} href="/">
+        <Toolbar title = "header-logo" >
+          <img src={'/Muse-logo.svg'} alt='logo' className={classes.logo + " logo"} onClick={() => history.push("/")}/>
+          <Typography>
 
           </Typography>
-
-            <Button href="/signup" color="inherit" >
-              Sign Up
-            </Button>
-            <Button href="/login" color="inherit">
-              Login
-            </Button>
-            {/* if user is logged in */}
-            <Button href="/map" color="inherit">
+          {!props.isLoggedIn &&
+            <React.Fragment>
+              <Button href="/signup" color="inherit" align="right" >
+                Sign Up
+              </Button>
+              <Button href="/login" color="inherit" align="right" >
+                Login
+              </Button>
+            </React.Fragment>
+          }
+            <Button href="/map" color="inherit" align="right" >
               Find A Museum
             </Button>
-            <Button href="/login" color="inherit">
-              Account
-            </Button>
-            <Button href="/logout" color="inherit">
-              Logout
-            </Button>
+          {props.isLoggedIn &&
+            <React.Fragment>
+              <Button color="inherit" align="right" onClick={props.handleClick} >
+                Logout
+              </Button>
+              <Avatar src='avatar.jpeg' align="right" onClick={() => history.push("/account")} className={classes.avatar} />
+            </React.Fragment>
+          }
 
         </Toolbar>
       </AppBar>
